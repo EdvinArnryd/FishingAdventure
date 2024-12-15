@@ -52,8 +52,6 @@ public class Movement : MonoBehaviour
             _animator.CrossFade(newState, 0.1f);
             _currentState = newState;
         }
-        
-        Debug.Log($"Last Direction: {_lastDirection}");
     }
 
     private int GetAnimationState(float horizontal, float vertical)
