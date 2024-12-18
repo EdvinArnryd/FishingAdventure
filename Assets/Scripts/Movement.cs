@@ -19,6 +19,16 @@ public class Movement : MonoBehaviour
     private static readonly int WalkLeft = Animator.StringToHash("WalkLeft");
     private static readonly int WalkUp = Animator.StringToHash("WalkUp");
     private static readonly int WalkDown = Animator.StringToHash("WalkDown");
+    
+    private static readonly int NewWalkDown = Animator.StringToHash("NewWalkDown");
+    private static readonly int NewWalkUp = Animator.StringToHash("NewWalkUp");
+    private static readonly int NewWalkRight = Animator.StringToHash("NewWalkRight");
+    private static readonly int NewWalkLeft = Animator.StringToHash("NewWalkLeft");
+    
+    private static readonly int NewIdleRight = Animator.StringToHash("NewIdleRight");
+    private static readonly int NewIdleLeft = Animator.StringToHash("NewIdleLeft");
+    private static readonly int NewIdleUp = Animator.StringToHash("NewIdleUp");
+    private static readonly int NewIdleDown = Animator.StringToHash("NewIdleDown");
 
     private void Awake()
     {
@@ -63,10 +73,10 @@ public class Movement : MonoBehaviour
         }
 
         // Determine walking state
-        if (horizontal > 0) return WalkRight;
-        if (horizontal < 0) return WalkLeft;
-        if (vertical > 0) return WalkUp;
-        if (vertical < 0) return WalkDown;
+        if (horizontal > 0) return NewWalkRight;
+        if (horizontal < 0) return NewWalkLeft;
+        if (vertical > 0) return NewWalkUp;
+        if (vertical < 0) return NewWalkDown;
 
         // Default to idle if no direction matches
         return GetIdleState();
@@ -75,12 +85,12 @@ public class Movement : MonoBehaviour
     private int GetIdleState()
     {
         // Determine idle animation based on last direction
-        if (_lastDirection.x > 0) return IdleRight;
-        if (_lastDirection.x < 0) return IdleLeft;
-        if (_lastDirection.y > 0) return IdleUp;
-        if (_lastDirection.y < 0) return IdleDown;
+        if (_lastDirection.x > 0) return NewIdleRight;
+        if (_lastDirection.x < 0) return NewIdleLeft;
+        if (_lastDirection.y > 0) return NewIdleUp;
+        if (_lastDirection.y < 0) return NewIdleDown;
 
         // Default to IdleDown for safety
-        return IdleDown;
+        return NewIdleDown;
     }
 }
